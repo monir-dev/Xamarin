@@ -8,10 +8,20 @@
              x:Class="TravelRecord.HomePage">
     
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="Add" x:Name="AddRecordNavigation" Clicked="AddRecordNavigation_OnClicked"></ToolbarItem>
+        <ToolbarItem 
+            Text="Add" 
+            Icon="add.png"
+            x:Name="AddRecordNavigation" 
+            Clicked="AddRecordNavigation_OnClicked"/>
     </TabbedPage.ToolbarItems>
 
-    <local:HistoryPage Title="History"/>
-    <local:MapPage Title="Map"/>
-    <local:ProfilePage Title="Profile"/>
+    <local:HistoryPage 
+        Title="History"
+        Icon="home.png"/>
+    <local:MapPage 
+        Title="Map"
+        Icon="map.png"/>
+    <local:ProfilePage 
+        Title="Profile"
+        Icon="user.png"/>
 </TabbedPage>

@@ -11,6 +11,12 @@
         VerticalOptions="Center"
         Margin="20">
 
+        <Image x:Name="iconImage"
+               Aspect="AspectFit"
+               HorizontalOptions="FillAndExpand"
+               HeightRequest="150"
+               Margin="0, 0, 0, 50"/>
+
         <Entry 
             x:Name="emailEntry" 
             Placeholder="Email Address"
@@ -26,6 +32,11 @@
             Clicked="LoginButton_OnClicked"
             Style="{StaticResource normalButton}"
             />
+
+        <Button x:Name="registerUserButton"
+                Text="Register"
+                HorizontalOptions="End"
+                Clicked="RegisterUserButton_OnClicked"/>
     </StackLayout>
 
 </ContentPage>

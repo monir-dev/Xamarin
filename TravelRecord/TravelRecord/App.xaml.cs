@@ -1,4 +1,5 @@
 ﻿using System;
+using TravelRecord.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,6 +8,8 @@ namespace TravelRecord
     public partial class App : Application
     {
         public static string dbLocation = string.Empty;
+
+        public static User user = new User();
 
         public App()
         {

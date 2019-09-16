@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using SQLite;
+using TravelRecord.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +13,29 @@ namespace TravelRecord
         public ProfilePage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))
+            {
+                var posts = conn.Table<Post>().ToList();
+
+                Dictionary<string, int> categoriesCount = posts
+                    .Where(p => !string.IsNullOrEmpty(p.CategoryName))
+                    .GroupBy(p => p.CategoryName)
+                    .Select(p => new
+                    {
+                        Category = p.Key,
+                        Count = p.Count()
+                    }).ToDictionary(p => p.Category, p => p.Count);
+
+                categoriesListView.ItemsSource = categoriesCount;
+
+                postCountLabel.Text = posts.Count().ToString();
+            }
         }
     }
 }

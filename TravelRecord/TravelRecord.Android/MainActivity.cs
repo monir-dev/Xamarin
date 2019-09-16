@@ -6,7 +6,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.CurrentActivity;
+using Plugin.Permissions;
 using Environment = System.Environment;
+using Xamarin.Essentials;
 
 namespace TravelRecord.Droid
 {
@@ -26,6 +29,9 @@ namespace TravelRecord.Droid
             
             // Initialize Xamarin Map
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+            // map permission
+            //Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
 
             // Find Database Full Path
@@ -41,7 +47,11 @@ namespace TravelRecord.Droid
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
+            // map permission
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
     }
 }

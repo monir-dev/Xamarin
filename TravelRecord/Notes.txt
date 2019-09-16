@@ -1,0 +1,14 @@
+// Assets
+https://romannurik.github.io/AndroidAssetStudio/
+https://icons8.com/icon/set/save/material
+
+
+// docs
+https://docs.microsoft.com/en-us/xamarin/essentials/geolocation?context=xamarin%2Fandroid&tabs=android
+https://jamesmontemagno.github.io/GeolocatorPlugin/GettingStarted.html
+https://github.com/jamesmontemagno/PermissionsPlugin
+
+
+
+// services
+https://foursquare.com

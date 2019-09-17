@@ -27,34 +27,12 @@ namespace TravelRecord
 
         private async void LoginButton_OnClicked(object sender, EventArgs e)
         {
-            User user = null;
+            bool canLogin = await User.Login(emailEntry.Text, passwordEntry.Text);
 
-
-            bool isEmailEmpty = string.IsNullOrEmpty(emailEntry.Text);
-            bool isPasswordEmpty = string.IsNullOrEmpty(passwordEntry.Text);
-
-            if (isEmailEmpty || isPasswordEmpty)
-            {
-                await DisplayAlert("Warning", "Email or Password can not be empty", "ok");
-                return;
-            }
-
-            using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))
-            {
-                conn.CreateTable<User>();
-                user = conn.Table<User>().SingleOrDefault(u => u.Email == emailEntry.Text);
-            }
-
-            if (user == null)
-            {
+            if (!canLogin)
                 await DisplayAlert("Warning", "Email and Password does not match", "ok");
-                return;
-            }
-
-            // set static user
-            App.user = user;
-
-            Navigation.PushAsync(new HomePage());
+            else
+                await Navigation.PushAsync(new HomePage());
         }
 
         private void RegisterUserButton_OnClicked(object sender, EventArgs e)

@@ -11,5 +11,5 @@
     <maps:Map x:Name="locationsMap"
               HorizontalOptions="FillAndExpand"
               VerticalOptions="FillAndExpand"
-              MapType="Hybrid"/>
+              MapType="Street"/>
 </ContentPage>

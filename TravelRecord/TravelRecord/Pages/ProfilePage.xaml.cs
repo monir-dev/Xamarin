@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SQLite;
 using TravelRecord.Model;
 using Xamarin.Forms;
@@ -15,27 +16,17 @@ namespace TravelRecord
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))
-            {
-                var posts = conn.Table<Post>().ToList();
+            var posts = await Post.Read();
 
-                Dictionary<string, int> categoriesCount = posts
-                    .Where(p => !string.IsNullOrEmpty(p.CategoryName))
-                    .GroupBy(p => p.CategoryName)
-                    .Select(p => new
-                    {
-                        Category = p.Key,
-                        Count = p.Count()
-                    }).ToDictionary(p => p.Category, p => p.Count);
+            Dictionary<string, int> categoriesCount = await Post.PostCategories(posts);
 
-                categoriesListView.ItemsSource = categoriesCount;
+            categoriesListView.ItemsSource = categoriesCount;
 
-                postCountLabel.Text = posts.Count().ToString();
-            }
+            postCountLabel.Text = posts.Count().ToString();
         }
     }
 }

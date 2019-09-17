@@ -81,14 +81,8 @@ namespace TravelRecord
             locationsMap.MoveToRegion(new MapSpan(new Position(position.Latitude, position.Longitude), 2, 2));
 
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))
-            {
-                conn.CreateTable<Post>();
-                var posts = conn.Table<Post>().Where(p => p.UserId == App.user.Id).ToList();
-
-                DisplayInMap(posts);
-            }
-
+            var posts = await Post.Read();
+            DisplayInMap(posts);
         }
 
         protected override async void OnDisappearing()

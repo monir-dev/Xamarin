@@ -18,35 +18,30 @@ namespace TravelRecord.Pages
             InitializeComponent();
         }
 
-        private void RegisterButton_OnClicked(object sender, EventArgs e)
+        private async void RegisterButton_OnClicked(object sender, EventArgs e)
         {
-            if (passwordEntry.Text == confirmPasswordEntry.Text)
+            if (passwordEntry.Text != confirmPasswordEntry.Text)
             {
-                User user = new User()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Email = emailEntry.Text,
-                    Password = passwordEntry.Text
-                };
+                await DisplayAlert("Error", "Password does not match", "Ok");
+                return;
+            }
 
-                using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))
-                {
-                    conn.CreateTable<User>();
-                    int rows = conn.Insert(user);
+            User user = new User()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Email = emailEntry.Text,
+                Password = passwordEntry.Text
+            };
 
-                    if (rows > 0)
-                    {
-                        DisplayAlert("Success", "Registration Successful", "Ok");
-                        Navigation.PushAsync(new MainPage());
-                    }
-                    else
-                        DisplayAlert("Failure", "Registration failed", "Ok");
-                }
+            int rows = await User.Insert(user);
+
+            if (rows > 0)
+            {
+                await DisplayAlert("Success", "Registration Successful", "Ok");
+                await Navigation.PushAsync(new MainPage());
             }
             else
-            {
-                DisplayAlert("Error", "Password does not match", "Ok");
-            }
+                await DisplayAlert("Failure", "Registration failed", "Ok");
         }
     }
 }

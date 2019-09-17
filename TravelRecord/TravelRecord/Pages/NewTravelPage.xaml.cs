@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
-using SQLite;
 using TravelRecord.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,11 +23,11 @@ namespace TravelRecord
             var locator = CrossGeolocator.Current;
             var position = await locator.GetPositionAsync();
 
-            var venues = await VenueLogic.GetVenues(position.Latitude, position.Longitude);
+            var venues = await Venue.GetVenues(position.Latitude, position.Longitude);
             venueListView.ItemsSource = venues;
         }
 
-        private void SaveExperience_OnClicked(object sender, EventArgs e)
+        private async void SaveExperience_OnClicked(object sender, EventArgs e)
         {
             try
             {
@@ -52,25 +49,17 @@ namespace TravelRecord
                     UserId = App.user.Id
                 };
 
-                using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))
-                {
-                    conn.CreateTable<Post>();
-                    int rows = conn.Insert(post);
 
-                    if (rows > 0)
-                        DisplayAlert("Success", "Experience successfully added", "Ok");
-                    else
-                        DisplayAlert("Failure", "Experience add operation failed", "Ok");
-                }
-            }
-            catch (NullReferenceException nre)
-            {
+                int rows = await Post.Insert(post);
+
+                if (rows > 0)
+                    DisplayAlert("Success", "Experience successfully added", "Ok");
+                else
+                    DisplayAlert("Failure", "Experience add operation failed", "Ok");
 
             }
-            catch (Exception ex)
-            {
-                
-            }
+            catch (NullReferenceException nre) { }
+            catch (Exception ex) { }
         }
     }
 }

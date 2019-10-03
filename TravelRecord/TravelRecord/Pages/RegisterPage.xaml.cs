@@ -13,9 +13,13 @@ namespace TravelRecord.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
+        private User user;
         public RegisterPage()
         {
             InitializeComponent();
+
+            user = new User();
+            containerStackLayout.BindingContext = user;
         }
 
         private async void RegisterButton_OnClicked(object sender, EventArgs e)
@@ -26,12 +30,12 @@ namespace TravelRecord.Pages
                 return;
             }
 
-            User user = new User()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Email = emailEntry.Text,
-                Password = passwordEntry.Text
-            };
+            //User user = new User()
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Email = emailEntry.Text,
+            //    Password = passwordEntry.Text
+            //};
 
             int rows = await User.Insert(user);
 

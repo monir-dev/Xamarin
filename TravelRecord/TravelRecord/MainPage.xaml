@@ -8,6 +8,7 @@
 
     
     <StackLayout 
+        x:Name="containerStackLayout"
         VerticalOptions="Center"
         Margin="20">
 
@@ -19,24 +20,28 @@
 
         <Entry 
             x:Name="emailEntry" 
+            Text="{Binding Email, Mode=TwoWay}"
             Placeholder="Email Address"
             Keyboard="Email" />
         <Entry 
             x:Name="passwordEntry" 
+            Text="{Binding Password, Mode=TwoWay}"
             Placeholder="Password" 
             IsPassword="True" />
         <Button 
             Margin="0, 40, 0, 0"
             Text="Log in" 
             x:Name="LoginButton"
-            Clicked="LoginButton_OnClicked"
+            Command="{Binding LoginCommand}"
+            CommandParameter="{Binding AppUser}"
             Style="{StaticResource normalButton}"
             />
 
         <Button x:Name="registerUserButton"
                 Text="Register"
                 HorizontalOptions="End"
-                Clicked="RegisterUserButton_OnClicked"/>
+                Command="{Binding RegisterCommand}"
+                />
     </StackLayout>
 
 </ContentPage>

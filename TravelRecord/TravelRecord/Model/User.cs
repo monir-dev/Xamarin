@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using TravelRecord.ViewModels;
 
 namespace TravelRecord.Model
 {
-    public class User
+    public class User : BaseViewModel
     {
-        [PrimaryKey]
-        public string Id { get; set; }
+        [PrimaryKey] 
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Email { get; set; }
         public string Password { get; set; }
 

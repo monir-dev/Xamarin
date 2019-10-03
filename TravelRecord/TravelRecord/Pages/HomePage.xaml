@@ -12,7 +12,7 @@
             Text="Add" 
             Icon="add.png"
             x:Name="AddRecordNavigation" 
-            Clicked="AddRecordNavigation_OnClicked"/>
+            Command="{Binding NavigationCommand}"/>
     </TabbedPage.ToolbarItems>
 
     <local:HistoryPage 

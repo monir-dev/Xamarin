@@ -6,12 +6,14 @@
              mc:Ignorable="d"
              x:Class="TravelRecord.Pages.RegisterPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" Margin="20">
+        <StackLayout VerticalOptions="Center" Margin="20" x:Name="containerStackLayout">
             <Entry 
+                Text="{Binding Email, Mode=TwoWay}"
                 x:Name="emailEntry" 
                 Placeholder="Email Address"
                 Keyboard="Email" />
             <Entry 
+                Text="{Binding Password, Mode=TwoWay}"
                 x:Name="passwordEntry" 
                 Placeholder="Password" 
                 IsPassword="True" />

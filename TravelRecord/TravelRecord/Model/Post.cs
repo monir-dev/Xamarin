@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using SQLite;
+using TravelRecord.Annotations;
+using TravelRecord.ViewModels;
 using Xamarin.Forms;
 
 namespace TravelRecord.Model
 {
-    public class Post
+    public class Post : BaseViewModel
     {
-        [PrimaryKey]
-        public string Id { get; set; }
+        [PrimaryKey] 
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [MaxLength(250)]
         public string Experience { get; set; }
@@ -83,5 +87,6 @@ namespace TravelRecord.Model
         }
 
         #endregion
+
     }
 }

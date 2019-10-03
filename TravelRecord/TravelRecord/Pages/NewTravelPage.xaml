@@ -14,10 +14,11 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="containerStackLayout">
             
             <Entry 
                 x:Name="experienceEntry"
+                Text="{Binding Experience, Mode=TwoWay}"
                 Placeholder="Write your experience" />
 
             <ListView x:Name="venueListView"

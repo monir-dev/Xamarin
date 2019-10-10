@@ -6,7 +6,7 @@ using TravelRecord.ViewModels.Base;
 
 namespace TravelRecord.ViewModels
 {
-    public class HomeViewModel
+    public class HomeViewModel : BaseViewModel
     {
         public ICommand NavigationCommand { get; set; }
 

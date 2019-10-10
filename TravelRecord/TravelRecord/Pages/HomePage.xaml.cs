@@ -21,6 +21,5 @@ namespace TravelRecord
             homeViewModel = new HomeViewModel();
             BindingContext = homeViewModel;
         }
-
     }
 }

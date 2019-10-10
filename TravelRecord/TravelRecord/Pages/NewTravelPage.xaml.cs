@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
 using TravelRecord.Model;
+using TravelRecord.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,13 +12,15 @@ namespace TravelRecord
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewTravelPage : ContentPage
     {
+        TravelViewModel travelViewModel;
         Post post;
         public NewTravelPage()
         {
             InitializeComponent();
 
             post = new Post();
-            containerStackLayout.BindingContext = post;
+            travelViewModel = new TravelViewModel();
+            BindingContext = travelViewModel;
         }
 
         protected override async void OnAppearing()
@@ -38,20 +41,6 @@ namespace TravelRecord
                 // Get selected item
                 var selectedVenue = venueListView.SelectedItem as Venue;
                 var firstCategory = selectedVenue.categories.FirstOrDefault();
-
-                //Post post = new Post()
-                //{
-                //    Id = Guid.NewGuid().ToString(),
-                //    Experience = experienceEntry.Text,
-                //    CategoryId = firstCategory.id,
-                //    CategoryName = firstCategory.name,
-                //    Address = selectedVenue.location.address,
-                //    Distance = selectedVenue.location.distance,
-                //    Latitude = selectedVenue.location.lat,
-                //    Longitude = selectedVenue.location.lng,
-                //    VenueName = selectedVenue.name,
-                //    UserId = App.user.Id
-                //};
 
                 post.CategoryId = firstCategory.id;
                 post.CategoryName = firstCategory.name;

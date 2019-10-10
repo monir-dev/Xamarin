@@ -7,6 +7,8 @@
              mc:Ignorable="d"
              x:Class="TravelRecord.HomePage">
     
+    
+
     <TabbedPage.ToolbarItems>
         <ToolbarItem 
             Text="Add" 

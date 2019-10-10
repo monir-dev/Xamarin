@@ -10,7 +10,12 @@
         <ToolbarItem 
             Text="Save" 
             Icon="save.png"
-            Clicked="SaveExperience_OnClicked"/>
+            x:Name="toolBarSaveButton"
+            Command="{Binding SaveExperienceCommand}"
+            
+            />
+        <!--Clicked="SaveExperience_OnClicked"-->
+        <!--Command="{Binding SaveExperienceCommand}"-->
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -23,6 +28,7 @@
 
             <ListView x:Name="venueListView"
                       HorizontalOptions="FillAndExpand"
+                      SelectedItem="{Binding venue, Mode=TwoWay}"
                       Margin="20, 0">
                 <ListView.ItemTemplate>
                   <DataTemplate>

@@ -27,9 +27,9 @@ namespace TravelRecord.Model
         public double Longitude { get; set; }
         public int Distance { get; set; }
 
-        public string UserId { get; set; }
+        public string UserId { get; set; } = App.user.Id;
 
-
+        public DateTimeOffset CreatedAt { get; set; }
 
 
         #region Methods
@@ -41,6 +41,7 @@ namespace TravelRecord.Model
         /// <returns></returns>
         public static async Task<int> Insert(Post post)
         {
+            post.CreatedAt = DateTimeOffset.Now;
             int rows = 0;
 
             using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))

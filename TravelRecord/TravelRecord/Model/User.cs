@@ -11,7 +11,7 @@ namespace TravelRecord.Model
     public class User : BaseViewModel
     {
         [PrimaryKey] 
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 
@@ -41,6 +41,8 @@ namespace TravelRecord.Model
 
         public static async Task<int> Insert(User user)
         {
+            user.Id = Guid.NewGuid().ToString();
+
             int rows = 0;
 
             using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))

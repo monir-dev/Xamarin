@@ -23,8 +23,6 @@ namespace TravelRecord.ViewModels
         public double Longitude { get; set; }
         public int Distance { get; set; }
 
-        public string UserId { get; set; } = App.user.Id;
-
 
         public Venue venue { get; set; }
 

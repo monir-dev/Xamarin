@@ -33,34 +33,5 @@ namespace TravelRecord
             var venues = await Venue.GetVenues(position.Latitude, position.Longitude);
             venueListView.ItemsSource = venues;
         }
-
-        private async void SaveExperience_OnClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get selected item
-                var selectedVenue = venueListView.SelectedItem as Venue;
-                var firstCategory = selectedVenue.categories.FirstOrDefault();
-
-                post.CategoryId = firstCategory.id;
-                post.CategoryName = firstCategory.name;
-                post.Address = selectedVenue.location.address;
-                post.Distance = selectedVenue.location.distance;
-                post.Latitude = selectedVenue.location.lat;
-                post.Longitude = selectedVenue.location.lng;
-                post.VenueName = selectedVenue.name;
-                post.UserId = App.user.Id;
-
-                int rows = await Post.Insert(post);
-
-                if (rows > 0)
-                    DisplayAlert("Success", "Experience successfully added", "Ok");
-                else
-                    DisplayAlert("Failure", "Experience add operation failed", "Ok");
-
-            }
-            catch (NullReferenceException nre) { }
-            catch (Exception ex) { }
-        }
     }
 }

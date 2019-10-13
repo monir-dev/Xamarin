@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 using TravelRecord.Model;
+using TravelRecord.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,17 +14,21 @@ namespace TravelRecord
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryPage : ContentPage
     {
+        HistoryViewModel historyViewModel;
+
         public HistoryPage()
         {
             InitializeComponent();
+
+            historyViewModel = new HistoryViewModel();
+            BindingContext = historyViewModel;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            var posts = await Post.Read();
-            postListView.ItemsSource = posts;
+            historyViewModel.RenderPosts();
         }
     }
 }

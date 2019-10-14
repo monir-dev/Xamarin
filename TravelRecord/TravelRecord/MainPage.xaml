@@ -8,6 +8,7 @@
 
     
     <StackLayout 
+        CompressedLayout.IsHeadless="True"
         x:Name="containerStackLayout"
         VerticalOptions="Center"
         Margin="20">

@@ -54,6 +54,31 @@ namespace TravelRecord.Model
         }
 
         /// <summary>
+        /// Insert a record to post table
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
+        public static async Task<bool> Delete(Post post)
+        {
+            int deleted = 0;
+
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.dbLocation))
+                {
+                    deleted = conn.Delete(post);
+                }
+            }
+            catch (Exception e)
+            {
+                deleted = 0;
+            }
+
+            return deleted == 1;
+        }
+
+
+        /// <summary>
         /// Return all post of currently logged in user
         /// </summary>
         /// <returns></returns>

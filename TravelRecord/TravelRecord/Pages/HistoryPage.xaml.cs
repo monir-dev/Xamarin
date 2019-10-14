@@ -24,11 +24,25 @@ namespace TravelRecord
             BindingContext = historyViewModel;
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            historyViewModel.RenderPosts();
+            await historyViewModel.RenderPosts();
+        }
+
+        private async void MenuItem_Clicked(object sender, EventArgs e)
+        {
+            var post = ((MenuItem) sender).CommandParameter as Post;
+            historyViewModel.DeletePosts(post);
+
+            await historyViewModel.RenderPosts();
+        }
+
+        private async void PostListView_OnRefreshing(object sender, EventArgs e)
+        {
+            await historyViewModel.RenderPosts();
+            postListView.IsRefreshing = false;
         }
     }
 }

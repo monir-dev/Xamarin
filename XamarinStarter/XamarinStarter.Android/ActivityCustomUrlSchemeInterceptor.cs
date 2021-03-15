@@ -29,7 +29,7 @@ namespace XamarinStarter.Droid
             var uri = new Uri(uri_android.ToString());
 
             // For Curious Drive Approch
-            AuthenticationState.Authenticator.OnPageLoading(uri);
+            //AuthenticationState.Authenticator.OnPageLoading(uri);
 
             // Close browser 
             var intent = new Intent(this, typeof(MainActivity));
@@ -38,7 +38,7 @@ namespace XamarinStarter.Droid
 
 
             //For Xamarin.Auth Approch
-            //OAuthAuthenticatorHelper.AuthenticationState.OnPageLoading(uri);
+            OAuthAuthenticatorHelper.AuthenticationState.OnPageLoading(uri);
 
 
             // common

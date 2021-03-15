@@ -12,10 +12,10 @@ namespace XamarinStarter
             InitializeComponent();
 
             // For Curious Drive Oauth Login
-            MainPage = new OAuthNativeFlowPage();
+            //MainPage = new OAuthNativeFlowPage();
 
             // For Xamarin.Auth Login 
-            //MainPage = new LoginPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

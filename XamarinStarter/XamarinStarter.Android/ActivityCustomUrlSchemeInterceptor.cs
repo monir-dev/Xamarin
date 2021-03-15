@@ -28,14 +28,20 @@ namespace XamarinStarter.Droid
             // Convert Android.Net.Url to Uri
             var uri = new Uri(uri_android.ToString());
 
+            // For Curious Drive Approch
+            AuthenticationState.Authenticator.OnPageLoading(uri);
+
             // Close browser 
             var intent = new Intent(this, typeof(MainActivity));
-            //intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+            intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
             StartActivity(intent);
 
-            // Load redirectUrl page
-            OAuthAuthenticatorHelper.AuthenticationState.OnPageLoading(uri);
 
+            //For Xamarin.Auth Approch
+            //OAuthAuthenticatorHelper.AuthenticationState.OnPageLoading(uri);
+
+
+            // common
             this.Finish();
         }
     }

@@ -19,18 +19,20 @@ namespace XamarinStarter.Services
         /// Create a new app and get new creadentials: 
         /// https://console.developers.google.com/apis/
         /// </summary>
-        public static readonly string ClientId = "45489150392-aqas7vt017r1buhf897m0g66r8ufgjlp.apps.googleusercontent.com";
-        public static readonly string ClientSecret = "66BXdsRvqb9stIM3n72JBlRx";
-        public static readonly string RedirectUri = "https://api.yescoders.com/";
+        /// 
+
+        //public static readonly string ClientId = "45489150392-aqas7vt017r1buhf897m0g66r8ufgjlp.apps.googleusercontent.com";
+        //public static readonly string ClientSecret = "66BXdsRvqb9stIM3n72JBlRx";
+        //public static readonly string RedirectUri = "https://api.yescoders.com/";
 
         public async Task<string> GetAccessTokenAsync(string code)
         {
             var requestUrl =
                 "https://www.googleapis.com/oauth2/v4/token"
                 + "?code=" + code
-                + "&client_id=" + ClientId
-                + "&client_secret=" + ClientSecret
-                + "&redirect_uri=" + RedirectUri
+                + "&client_id=" + Constants.GoogleAndroidRedirectUrl
+                + "&client_secret=" + Constants.GoogleAndroidClientSecret
+                + "&redirect_uri=" + Constants.GoogleAndroidRedirectUrl
                 + "&grant_type=authorization_code";
 
             var httpClient = new HttpClient();

@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using XamarinStarter.OAuth;
 
 namespace XamarinStarter.iOS
 {
@@ -23,9 +24,21 @@ namespace XamarinStarter.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            global::Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+        {
+            // Convert iOS NSUrl to C#/netxf/BCL System.Uri - common API
+            Uri uri_netfx = new Uri(url.AbsoluteString);
+
+            // load redirect_url Page for parsing
+            OAuthAuthenticatorHelper.AuthenticationState.OnPageLoading(uri_netfx);
+
+            return true;
         }
     }
 }

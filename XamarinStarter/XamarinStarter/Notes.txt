@@ -13,3 +13,9 @@ https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
 //Google Api Client ID
 45489150392-6jbncpulb46hkdd3s09brbb5fjkas2jg.apps.googleusercontent.com
 
+
+
+
+
+Converting Accounting Storage to Secure Storage 
+https://github.com/xamarin/Xamarin.Auth/wiki/Migrating-from-AccountStore-to-Xamarin.Essentials-SecureStorage

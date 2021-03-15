@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:XamarinStarter.ViewModels;assembly=XamarinStarter"
+             mc:Ignorable="d"
+             x:Class="XamarinStarter.View.GoogleProfilePage"
+             BackgroundColor="White">
+
+
+    <ContentPage.BindingContext>
+        <viewModels:GoogleViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout x:Name="MainStackLayout"
+                 Padding="8,0"
+                 Orientation="Vertical">
+
+        <StackLayout Orientation="Horizontal"
+                     Padding="0,20,0,50">
+
+            <Image Source="{Binding GoogleProfile.Image.Url}"
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   VerticalOptions="Start"/>
+
+            <StackLayout Orientation="Vertical" >
+
+                <Label Text="{Binding GoogleProfile.DisplayName, StringFormat='DisplayName: {0:N}'}"
+                       TextColor="Black"
+                       Font="Bold"
+                       FontSize="18"/>
+
+                <Label Text = "{Binding GoogleProfile.Id, StringFormat='Id: {0:N}'}"
+                       TextColor="Black"
+                       FontSize="16"/>
+
+                <Label Text = "{Binding GoogleProfile.Occupation, StringFormat='Occupation: {0:N}'}"
+                       TextColor="Black"
+                       FontSize="16"/>
+
+                <Label Text = "{Binding GoogleProfile.Tagline, StringFormat='Tagline: {0:N}'}"
+                       TextColor="Black"
+                       FontSize="16"/>
+
+            </StackLayout>
+
+        </StackLayout>
+
+        <Label Text="{Binding GoogleProfile.CircledByCount, StringFormat='CircledByCount: {0:N}'}"
+               TextColor="Black"
+               FontSize="16"/>
+
+        <Label Text="{Binding GoogleProfile.Verified, StringFormat='Verified: {0:N}'}"
+               TextColor="Black"
+               FontSize="16"/>
+
+        <Image Source="{Binding GoogleProfile.Cover.CoverPhoto.Url}"
+               HeightRequest="200" />
+
+    </StackLayout>
+</ContentPage>

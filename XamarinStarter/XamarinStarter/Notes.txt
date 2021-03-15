@@ -1,0 +1,15 @@
+﻿// Get KeyStore SHA1
+https://docs.microsoft.com/en-us/xamarin/android/deploy-test/signing/keystore-signature?tabs=windows
+https://www.youtube.com/watch?v=ME42oISFSmY
+keytool.exe -list -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android
+80:C9:4C:9F:8D:CE:50:65:42:A9:CF:A4:12:BB:42:24:DE:64:E1:47
+
+
+//Google Login
+https://www.youtube.com/watch?v=j3OTZ62AkNU
+https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
+
+
+//Google Api Client ID
+45489150392-6jbncpulb46hkdd3s09brbb5fjkas2jg.apps.googleusercontent.com
+
